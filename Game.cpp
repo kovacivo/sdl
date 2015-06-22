@@ -47,7 +47,11 @@ bool Game::init(const char* title, int xpos, int ypos, int width, int height, bo
 	std::cout << "init success\n";
 	m_bRunning = true; // everything inited successfully, start the main loop
 
-	m_textureManager.load("assets/animate-alpha.png", "animate", m_pRenderer);
+	//m_textureManager.load("assets/animate-alpha.png", "animate", m_pRenderer);
+	if(!TheTextureManager::Instance()->load("assets/animate-alpha.png", "animate", m_pRenderer))
+	{
+		return false;
+	}
 
 	//SDL_Surface* pTempSurface = SDL_LoadBMP("assets/animate.bmp");
 	//SDL_Surface* pTempSurface = IMG_Load("assets/animate-alpha.png");
@@ -94,8 +98,10 @@ void Game::render()
 	//SDL_RenderPresent(m_pRenderer);
 
 	SDL_RenderClear(m_pRenderer);
-	m_textureManager.draw("animate", 0,0, 128, 82, m_pRenderer);
-	m_textureManager.drawFrame("animate", 100,100, 128, 82, 1, m_currentFrame, m_pRenderer);
+	//m_textureManager.draw("animate", 0,0, 128, 82, m_pRenderer);
+	TheTextureManager::Instance()->draw("animate", 0,0, 128, 82, m_pRenderer);
+	//m_textureManager.drawFrame("animate", 100,100, 128, 82, 1, m_currentFrame, m_pRenderer);
+	TheTextureManager::Instance()->drawFrame("animate", 100,100, 128, 82, 1, m_currentFrame,  m_pRenderer);
 	SDL_RenderPresent(m_pRenderer);
 }
 

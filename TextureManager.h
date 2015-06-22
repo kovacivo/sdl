@@ -12,8 +12,16 @@ using namespace std;
 class TextureManager
 {
 	public:
-		TextureManager() {}
-		~TextureManager() {}
+		static TextureManager* Instance()
+    {
+        if(s_pInstance == 0)
+        {
+            s_pInstance = new TextureManager();
+            return s_pInstance;
+        }
+       
+        return s_pInstance;
+    }
 
 		bool load(string fileName,string id, SDL_Renderer* pRenderer);
 
@@ -26,7 +34,13 @@ class TextureManager
 		std::map<std::string, SDL_Texture*> m_textureMap;
 
 	private:
+		TextureManager() {}
+		~TextureManager() {}
+
 		int m_currentFrame;
+		static TextureManager* s_pInstance;
 };
+
+typedef TextureManager TheTextureManager;
 
 #endif
