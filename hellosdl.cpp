@@ -1,3 +1,4 @@
+// classical helloworld program in SDL2
 #include <SDL2/SDL.h>
 #include <cstdio>
 

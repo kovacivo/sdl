@@ -1,3 +1,4 @@
+// very first program - skeleton for creating any SDL program
 #include <SDL2/SDL.h>
 #include <stdio.h> 
 
